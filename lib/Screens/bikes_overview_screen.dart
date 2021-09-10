@@ -1,3 +1,4 @@
+import 'package:app_locate_bike/Components/bike_grid_item.dart';
 import 'package:app_locate_bike/Mocks/mock_bike.dart';
 import 'package:app_locate_bike/Models/bike.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class _BikeOverviewScreenState extends State<BikeOverviewScreen > {
           childAspectRatio: 3 / 2,
         ),
         itemBuilder: (context, index){
-          return Text("${bikes[index].nome}");
+          return BikeGridItem( bike: bikes[index],);
         }),
       );
   }

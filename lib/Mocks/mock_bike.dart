@@ -2,7 +2,7 @@ import 'package:app_locate_bike/Models/bike.dart';
 
 final MOCK_BIKES = [
   Bike(
-    nome: 'BICICLETA GTS ARO 29',
+    nome: 'BICICLETA GTS',
     codigo: 1959,
     preco: 1399.00,
     genero: "Unissex",
@@ -17,7 +17,7 @@ final MOCK_BIKES = [
   ),
 
   Bike(
-    nome: 'BICICLETA GTS ARO 29 M1 NEW EXPERT 2.0',
+    nome: 'BICICLETA GTS M1 NEW EXPERT 2.0',
     codigo: 1357,
     preco: 1799.00,
     genero: "Unissex",
@@ -32,7 +32,7 @@ final MOCK_BIKES = [
   ),
 
   Bike(
-    nome: 'BICICLETA GTS M1 I-VTEC ABSOLUTE MAGNÉSIO RAPHYNUS ARO 29',
+    nome: 'BICICLETA GTS M1 I-VTEC ABSOLUTE',
     codigo: 2165,
     preco: 3299.00,
     genero: "Unissex",
@@ -47,7 +47,7 @@ final MOCK_BIKES = [
   ),
 
   Bike(
-    nome: 'BICICLETA GTS M1 RAV HT1 CARBON XTR 1X12 ARO 29',
+    nome: 'BICICLETA GTS M1 RAV HT1 CARBON XTR 1X12',
     codigo: 3319,
     preco: 68834.00,
     genero: "Unissex",
