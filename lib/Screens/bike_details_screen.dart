@@ -1,13 +1,18 @@
 
 import 'package:app_locate_bike/Models/bike.dart';
+import 'package:app_locate_bike/Providers/cart_item.dart';
+import 'package:app_locate_bike/Providers/cart_provider.dart';
+import 'package:app_locate_bike/app_routes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BikeDetailsScreen extends StatelessWidget {
   const BikeDetailsScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final Bike bike = ModalRoute.of(context)!.settings.arguments as Bike;
+    var cartProvider = Provider.of<CartItem>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black87,
@@ -53,8 +58,11 @@ class BikeDetailsScreen extends StatelessWidget {
               ),
               icon: Icon(Icons.shopping_cart), 
               label: Text("Alugar Bike"),
-              onPressed: (){}, 
-            )
+              onPressed: (){
+                cartProvider.addBike(bike);
+                Navigator.of(context).pushNamed(AppRoutes.CART_DETAIL);
+              }, 
+            ),
           ],),
       ),
     );

@@ -4,7 +4,7 @@ final MOCK_BIKES = [
   Bike(
     nome: 'BICICLETA GTS',
     codigo: 1959,
-    preco: 1399.00,
+    preco: 25.00,
     genero: "Unissex",
     suspensao: "Dianteira",
     tamanho: "17 19 e 2",
@@ -19,7 +19,7 @@ final MOCK_BIKES = [
   Bike(
     nome: 'BICICLETA GTS M1 NEW EXPERT 2.0',
     codigo: 1357,
-    preco: 1799.00,
+    preco: 30.00,
     genero: "Unissex",
     suspensao: "Dianteira",
     tamanho: "15 17 19 e 21",
@@ -34,7 +34,7 @@ final MOCK_BIKES = [
   Bike(
     nome: 'BICICLETA GTS M1 I-VTEC ABSOLUTE',
     codigo: 2165,
-    preco: 3299.00,
+    preco: 20.00,
     genero: "Unissex",
     suspensao: "Dianteira",
     tamanho: "17 e 20",
@@ -49,7 +49,7 @@ final MOCK_BIKES = [
   Bike(
     nome: 'BICICLETA GTS M1 RAV HT1 CARBON XTR 1X12',
     codigo: 3319,
-    preco: 68834.00,
+    preco: 50.00,
     genero: "Unissex",
     suspensao: "Dianteira",
     tamanho: "19 e 21",

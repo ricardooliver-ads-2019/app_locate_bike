@@ -1,7 +1,9 @@
 import 'package:app_locate_bike/Models/bike.dart';
+import 'package:app_locate_bike/Providers/cart_item.dart';
 import 'package:app_locate_bike/app_routes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BikeGridItem extends StatelessWidget {
   final Bike bike;
@@ -9,6 +11,7 @@ class BikeGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cartProvider = Provider.of<CartItem>(context);
     return GestureDetector(
       child: GridTile(
           child: Image(image: CachedNetworkImageProvider(bike.imageURL),
@@ -20,7 +23,7 @@ class BikeGridItem extends StatelessWidget {
             //leading: Text('Aro ${bike.aro}"',
             title: Text(
               '${bike.nome}',
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.left,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
@@ -31,10 +34,16 @@ class BikeGridItem extends StatelessWidget {
               "R\$: ${bike.preco}",
               style: TextStyle(
                 color: Colors.green,
-                fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ), 
+            trailing: GestureDetector(
+              child: Icon(Icons.add_shopping_cart_sharp),
+              onTap: (){
+                  cartProvider.addBike(bike);
+                  print('Quantidade de Bikes no cart: ${cartProvider.total}');
+              },
+            ),
           ),
       ),
       onTap: (){
