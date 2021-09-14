@@ -19,14 +19,16 @@ class CartItem with ChangeNotifier{
   }
 
 
-  CheckListCart(Bike bike, Function addBike){
-    String result ="";
-    print(_bikes.contains(bike));
-    if (!_bikes.contains(bike)) {
-        addBike(bike);
-        result = "Item Adicionado com Sucesso";
+  CheckListCart(Bike bike, Function addBike){ //!função para verificar se um determindado item já existe lista 
+    // função recebe como parametro, *uma lista do tipo Bike e *uma função que add um elemento na lista
+    
+    String result ="";                          //!---> variavel que vai ser retornada com a resposta da ferificação
+   
+    if (!_bikes.contains(bike)) {               //!---> ferificação * se não contem o elemento (bike) na lista 
+        addBike(bike);                          //!---> então add o elemento na lista 
+        result = "Item Adicionado com Sucesso"; //!---> e a variavel result = recebe o valor de "Item Adicionado com Sucesso"
                           
-    } else {
+    } else {                                    //!---> se o item já está na lista então a variavel result = o valor de "Item já está no carrinho"
         result = "Item já está no carrinho";
     }
 

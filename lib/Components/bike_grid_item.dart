@@ -42,11 +42,12 @@ class BikeGridItem extends StatelessWidget {
               child: Icon(Icons.add_shopping_cart_sharp),
               onTap: (){
 
-                  String resp = cartProvider.CheckListCart(bike, cartProvider.addBike);
-                  print('Quantidade de Bikes no cart: ${cartProvider.total}');
+                  String resp = cartProvider.CheckListCart(bike, cartProvider.addBike); //!---> aqui foi passado para variavel resp o resutado da função CheckListCart e que também ira executar a verificação se o item está ou não está na lista
+                  //print('Quantidade de Bikes no cart: ${cartProvider.total}');
+
                   showDialog(context: context, builder: (BuildContext context){
                     return AlertDialog(
-                      title: Text("$resp", textAlign: TextAlign.center, 
+                      title: Text("$resp", textAlign: TextAlign.center, //!---> aqui foi passado a variavel resp como parametro da tela de pou-up que vair ser aberto, essa variavel será usada como o titulo.
                         style: TextStyle(),
                       ),
                       content: Icon(Icons.check_rounded, color: Colors.green, size: 100,),
