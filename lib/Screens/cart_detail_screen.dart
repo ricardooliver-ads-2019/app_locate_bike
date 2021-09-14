@@ -11,7 +11,7 @@ class CartDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cartProvider = Provider.of<CartItem>(context);
-    final List<Bike> bikes = Provider.of<CartItem>(context).bike; //!
+    final List<Bike> bikes = Provider.of<CartItem>(context).bike;
     return Scaffold(
       appBar: AppBar(
         title: Text('Registro de Alugel'),
