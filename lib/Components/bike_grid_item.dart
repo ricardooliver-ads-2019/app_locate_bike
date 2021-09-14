@@ -1,5 +1,6 @@
 import 'package:app_locate_bike/Models/bike.dart';
 import 'package:app_locate_bike/Providers/cart_item.dart';
+import 'package:app_locate_bike/Screens/home_modal_addCart.dart';
 import 'package:app_locate_bike/app_routes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -40,9 +41,52 @@ class BikeGridItem extends StatelessWidget {
             trailing: GestureDetector(
               child: Icon(Icons.add_shopping_cart_sharp),
               onTap: (){
-                  cartProvider.addBike(bike);
+
+                  String resp = cartProvider.CheckListCart(bike, cartProvider.addBike);
                   print('Quantidade de Bikes no cart: ${cartProvider.total}');
-              },
+                  showDialog(context: context, builder: (BuildContext context){
+                    return AlertDialog(
+                      title: Text("$resp", textAlign: TextAlign.center, 
+                        style: TextStyle(),
+                      ),
+                      content: Icon(Icons.check_rounded, color: Colors.green, size: 100,),
+                      actions: <Widget>[
+
+                        ElevatedButton.icon(
+                          style:  ElevatedButton.styleFrom(
+                            minimumSize: Size(170,40),
+                            primary: Colors.black87,
+                          ),
+                           
+                          label: Text("Pagamento"),
+                          icon: Icon(Icons.monetization_on_outlined),
+
+                          onPressed: (){
+                            Navigator.of(context).pushNamed(AppRoutes.CART_DETAIL);
+                          },
+                        ),
+                        
+                        ElevatedButton.icon(
+                          style:  ElevatedButton.styleFrom(
+                            minimumSize: Size(170,40),
+                            primary: Colors.black87,
+                          ),
+                          label: Padding(
+                            padding: const EdgeInsets.fromLTRB(40,0,0,0,),
+                            child: Text("Fechar"),
+                          ),
+                          icon: Icon(Icons.close), 
+                          onPressed: (){
+                            Navigator.pop(context);
+                          }, 
+                        ),
+
+                        
+
+                      ],
+                    );
+                  });
+              } 
             ),
           ),
       ),

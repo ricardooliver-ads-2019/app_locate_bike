@@ -8,14 +8,8 @@ class CartItem with ChangeNotifier{
   int get total => _bikes.length;
 
   void addBike(Bike bike){
-    print(_bikes.contains(bike));
-    bool result = _bikes.contains(bike);
-    if (!result) {
-      _bikes.add(bike);
-      notifyListeners();
-    } else {
-      print("Item já está no carrionho!!!");
-    }
+    _bikes.add(bike);
+    notifyListeners();    
     
   }
 
@@ -23,4 +17,24 @@ class CartItem with ChangeNotifier{
     _bikes.remove(bike);
     notifyListeners();
   }
+
+
+  CheckListCart(Bike bike, Function addBike){
+    String result ="";
+    print(_bikes.contains(bike));
+    if (!_bikes.contains(bike)) {
+        addBike(bike);
+        result = "Item Adicionado com Sucesso";
+                          
+    } else {
+        result = "Item já está no carrinho";
+    }
+
+    return result;
+
+  }
+
+
+
 }
+

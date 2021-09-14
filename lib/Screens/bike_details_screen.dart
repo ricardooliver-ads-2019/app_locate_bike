@@ -1,11 +1,10 @@
-
 import 'package:app_locate_bike/Models/bike.dart';
 import 'package:app_locate_bike/Providers/cart_item.dart';
-import 'package:app_locate_bike/Providers/cart_provider.dart';
 import 'package:app_locate_bike/app_routes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 
 class BikeDetailsScreen extends StatelessWidget {
   const BikeDetailsScreen({Key? key}) : super(key: key);
@@ -15,8 +14,23 @@ class BikeDetailsScreen extends StatelessWidget {
     var cartProvider = Provider.of<CartItem>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black87,
         title: Text('${bike.nome}'),
+        //centerTitle: true,
+        backgroundColor: Colors.black87,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.pedal_bike),
+            onPressed: (){
+              Navigator.of(context).pushNamed(AppRoutes.CART_DETAIL);
+            },  
+          ),
+
+          Consumer<CartItem>(builder: (context, cartItem, _) => Text(cartItem.total.toString()),),
+
+          SizedBox(
+            width: 22,
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -59,8 +73,62 @@ class BikeDetailsScreen extends StatelessWidget {
               icon: Icon(Icons.shopping_cart), 
               label: Text("Alugar Bike"),
               onPressed: (){
-                cartProvider.addBike(bike);
-                Navigator.of(context).pushNamed(AppRoutes.CART_DETAIL);
+                String resp = cartProvider.CheckListCart(bike, cartProvider.addBike);
+                  print('Quantidade de Bikes no cart: ${cartProvider.total}');
+                  showDialog(context: context, builder: (BuildContext context){
+                    return AlertDialog(
+                      title: Text("$resp", textAlign: TextAlign.center, 
+                        style: TextStyle(),
+                      ),
+                      content: Icon(Icons.check_rounded, color: Colors.green, size: 100,),
+                      actions: <Widget>[
+                      
+                        ElevatedButton.icon(
+                          style:  ElevatedButton.styleFrom(
+                            minimumSize: Size(170,40),
+                            primary: Colors.black87,
+                          ),
+                          label: Text("Ver mais Bikes"),
+                          icon: Icon(Icons.pedal_bike_rounded), 
+                          onPressed: (){
+                            Navigator.of(context).pushNamed(AppRoutes.HOME);
+                          }, 
+                        ),
+
+                        ElevatedButton.icon(
+                          style:  ElevatedButton.styleFrom(
+                            minimumSize: Size(170,40),
+                            primary: Colors.black87,
+                          ),
+                           
+                          label: Text("Pagamento"),
+                          icon: Icon(Icons.monetization_on_outlined),
+
+                          onPressed: (){
+                            Navigator.of(context).pushNamed(AppRoutes.CART_DETAIL);
+                          },
+                        ),
+
+                        ElevatedButton.icon(
+                          style:  ElevatedButton.styleFrom(
+                            minimumSize: Size(170,40),
+                            primary: Colors.black87,
+                          ),
+                          label: Padding(
+                            padding: const EdgeInsets.fromLTRB(40,0,0,0,),
+                            child: Text("Fechar"),
+                          ),
+                          icon: Icon(Icons.close), 
+                          onPressed: (){
+                            Navigator.pop(context);
+                          }, 
+                        ),
+
+                      ],
+                    );
+                  });
+                  //showBottomSheet(context: context, builder: (context) => HomeModalAddCart(resp: resp,));
+                  //
               }, 
             ),
           ],),

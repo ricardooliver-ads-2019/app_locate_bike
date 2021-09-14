@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: BikeOverviewScreen(),
         routes: {
+          AppRoutes.HOME: (context) => BikeOverviewScreen(),
           AppRoutes.BIKE_DETAIL: (context) => BikeDetailsScreen(),
           AppRoutes.CART_DETAIL: (context) => CartDetailScreen(),
         },

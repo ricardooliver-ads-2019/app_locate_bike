@@ -3,6 +3,8 @@ import 'package:app_locate_bike/Providers/cart_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../app_routes.dart';
+
 class CartDetailScreen extends StatelessWidget {
   const CartDetailScreen({Key? key}) : super(key: key);
 
@@ -12,8 +14,21 @@ class CartDetailScreen extends StatelessWidget {
     final List<Bike> bikes = Provider.of<CartItem>(context).bike; //!
     return Scaffold(
       appBar: AppBar(
-        title: Text("Registro de Aluguel"),
+        title: Text('Registro de Alugel'),
+        //centerTitle: true,
         backgroundColor: Colors.black87,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.pedal_bike),
+            onPressed: (){},  
+          ),
+
+          Consumer<CartItem>(builder: (context, cartItem, _) => Text(cartItem.total.toString()),),
+
+          SizedBox(
+            width: 22,
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -24,7 +39,7 @@ class CartDetailScreen extends StatelessWidget {
                 return Card(
                   child: ListTile(
                     trailing: GestureDetector(
-                      child: Icon(Icons.remove_shopping_cart_rounded),
+                      child: Icon(Icons.delete_forever, color: Colors.red,),
                       onTap: (){
                         cartProvider.removeBike(bikes[index]);
                       },
@@ -38,12 +53,31 @@ class CartDetailScreen extends StatelessWidget {
             ),
 
             ElevatedButton.icon(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.black87),
+              //style: ButtonStyle(
+              //  backgroundColor: MaterialStateProperty.all<Color>(Colors.black87),
+              //),
+              style:  ElevatedButton.styleFrom(
+                minimumSize: Size(180,40),
+                primary: Colors.black87,
               ),
               icon: Icon(Icons.shopping_cart), 
               label: Text("Ir para pagamento"),
               onPressed: (){}, 
+            ),
+
+            ElevatedButton.icon(
+              //style: ButtonStyle(
+              //  backgroundColor: MaterialStateProperty.all<Color>(Colors.black87),
+              //),
+              style:  ElevatedButton.styleFrom(
+                minimumSize: Size(180,40),
+                primary: Colors.black87,
+              ),
+              icon: Icon(Icons.pedal_bike_rounded), 
+              label: Text("Ver mais bikes"),
+              onPressed: (){
+                Navigator.of(context).pushNamed(AppRoutes.HOME);
+              }, 
             )
           ],
         ),
