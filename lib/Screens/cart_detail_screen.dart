@@ -1,9 +1,12 @@
 import 'package:app_locate_bike/Models/bike.dart';
 import 'package:app_locate_bike/Providers/cart_item.dart';
 import 'package:flutter/material.dart';
+import 'package:mercado_pago_mobile_checkout/mercado_pago_mobile_checkout.dart';
 import 'package:provider/provider.dart';
-
 import '../app_routes.dart';
+
+const publicKey = "TEST-c205470b-d722-4fea-933c-6cac06e82070";
+const preferenceId = "295676413-34dd052d-ce66-4da7-86f6-b31d4a782815";
 
 class CartDetailScreen extends StatelessWidget {
   const CartDetailScreen({Key? key}) : super(key: key);
@@ -61,8 +64,15 @@ class CartDetailScreen extends StatelessWidget {
                 primary: Colors.black87,
               ),
               icon: Icon(Icons.shopping_cart), 
-              label: Text("Ir para pagamento"),
-              onPressed: (){}, 
+              label: Text("Alugar ${cartProvider.total} Bikes por R\$ ${cartProvider.somaTotal.toStringAsFixed(2)}"),
+              onPressed: () async{
+                  PaymentResult result =
+                      await MercadoPagoMobileCheckout.startCheckout(
+                    publicKey,
+                    preferenceId,
+                  );
+                  print(result.toString());
+                },
             ),
 
             ElevatedButton.icon(

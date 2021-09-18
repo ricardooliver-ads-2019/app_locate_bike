@@ -6,17 +6,38 @@ class CartItem with ChangeNotifier{
   List<Bike> get bike => [..._bikes];
 
   int get total => _bikes.length;
+  double somaTotal = 0;
 
   void addBike(Bike bike){
     _bikes.add(bike);
-    notifyListeners();    
+    notifyListeners(); 
+    sumPrice(bike);
+       
     
   }
 
   void removeBike(Bike bike){
     _bikes.remove(bike);
     notifyListeners();
+    remoPrice(bike);
   }
+
+  void sumPrice(Bike bike){ //soma o valor no carrinho
+    somaTotal += bike.preco;
+    notifyListeners();
+  }
+
+  void remoPrice(Bike bike){ //remove o valor da bike do carrinho
+    somaTotal -= bike.preco;
+    notifyListeners();
+  }
+
+
+
+
+
+
+
 
 
   CheckListCart(Bike bike, Function addBike){ //!função para verificar se um determindado item já existe lista 
