@@ -1,6 +1,5 @@
 import 'package:app_locate_bike/Models/bike.dart';
 import 'package:app_locate_bike/Providers/cart_item.dart';
-import 'package:app_locate_bike/Screens/home_modal_addCart.dart';
 import 'package:app_locate_bike/app_routes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

@@ -1,12 +1,13 @@
 import 'package:app_locate_bike/Models/bike.dart';
 import 'package:app_locate_bike/Providers/cart_item.dart';
+import 'package:app_locate_bike/services/get_preferenceid.dart';
 import 'package:flutter/material.dart';
 import 'package:mercado_pago_mobile_checkout/mercado_pago_mobile_checkout.dart';
 import 'package:provider/provider.dart';
 import '../app_routes.dart';
 
 const publicKey = "TEST-c205470b-d722-4fea-933c-6cac06e82070";
-const preferenceId = "295676413-34dd052d-ce66-4da7-86f6-b31d4a782815";
+var preferenceId = "";
 
 class CartDetailScreen extends StatelessWidget {
   const CartDetailScreen({Key? key}) : super(key: key);
@@ -66,12 +67,22 @@ class CartDetailScreen extends StatelessWidget {
               icon: Icon(Icons.shopping_cart), 
               label: Text("Alugar ${cartProvider.total} Bikes por R\$ ${cartProvider.somaTotal.toStringAsFixed(2)}"),
               onPressed: () async{
+                  preferenceId = await getPreferenceId(
+                    title: "Aluguel de Bike",
+                    description: "varias Bikes",
+                    quantity: 1,
+                    currency_id: "BRL",
+                    unit_price: cartProvider.somaTotal,
+                    email: "teste.teste@gmail.com"
+                  );
                   PaymentResult result =
                       await MercadoPagoMobileCheckout.startCheckout(
                     publicKey,
                     preferenceId,
                   );
+                  print("#################");
                   print(result.toString());
+                  print("#################");
                 },
             ),
 
